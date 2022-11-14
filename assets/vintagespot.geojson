@@ -1,0 +1,80 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Storename": "Fremont Vintage Mall",
+        "Googlerate": 4.5,
+        "Phone": "(206) 329-4460"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.3501250000001,
+          47.650300296331324
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Storename": "Red Light Vintage",
+        "Googlerate": 4.1,
+        "Phone": "(206) 545-4044"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.31278854232804,
+          47.66295864485633
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Storename": "Bon Voyage Vintage",
+        "Googlerate": 4.9,
+        "Phone": "(206) 226-5069"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.33376854232729,
+          47.60110042917293
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Storename": "Seattle Antiques Market",
+        "Googlerate": 4.3,
+        "Phone": "(206) 623-6115"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.34086854232812,
+          47.60745531707647
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Storename": "Lander Street Vintage",
+        "Googlerate": 4.7,
+        "Phone": "(206) 385-8630"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.33121427116396,
+          47.57933138133177
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}

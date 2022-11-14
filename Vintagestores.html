@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Earthquake List</title>
+    <title>Vintage Store List</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
@@ -56,14 +56,14 @@
     <main id="container">
         <div id="side-panel">
 
-            <h2>Earthquake List</h2>
-            <button>Sort by Magnitude</button>
+            <h2>Vintage Store List</h2>
+            <button>Sort by Rate</button>
 
             <table>
                 <tr>
-                    <th>id</th>
-                    <th>magnitude</th>
-                    <th>timestamp</th>
+                    <th>Store Name</th>
+                    <th>Google Rate</th>
+                    <th>Phone</th>
                 </tr>
             </table>
 
@@ -72,55 +72,51 @@
 
     </main>
     <script>
-        // define the mapbox access token
         mapboxgl.accessToken =
-            'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
-
-        // define the map object
-        let map = new mapboxgl.Map({
+            'pk.eyJ1Ijoid2VpbGl3MiIsImEiOiJjbGEyeXgyMHIwMGl2M3Ztem16NmZwZTQ5In0.iPuCKVEXHOPSRyooaiocXQ';
+        const map = new mapboxgl.Map({
             container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/satellite-v9', // style URL
-            zoom: 5.5, // starting zoom
-            center: [138, 38] // starting center
+            style: 'mapbox://styles/weiliw2/claga4xps002015qo8tsf6rfz', // style URL
+            zoom: 9.4, // starting zoom
+            center: [-122.3338, 47.6177] // starting center
         });
 
 
 
         async function geojsonFetch() {
 
-            let response, earthquakes, japan, table;
-            response = await fetch('assets/earthquakes.geojson');
-            earthquakes = await response.json();
-            response = await fetch('assets/japan.json');
-            japan = await response.json();
+            let response, vintagespot, Seattle, table;
+            response = await fetch('assets/vintagespot.geojson');
+            vintagespot = await response.json();
+            response = await fetch('assets/Seattle.json');
+            Seattle = await response.json();
 
             table = document.getElementsByTagName("table")[0];
             let row, cell1, cell2, cell3;
-            for (let i = 0; i < earthquakes.features.length; i++) {
+            for (let i = 0; i < vintagespot.features.length; i++) {
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 row = table.insertRow(-1);
                 cell1 = row.insertCell(0);
                 cell2 = row.insertCell(1);
                 cell3 = row.insertCell(2);
-                cell1.innerHTML = earthquakes.features[i].properties.id;
-                cell2.innerHTML = earthquakes.features[i].properties.mag;
-                cell3.innerHTML = new Date(earthquakes.features[i].properties.time).toLocaleDateString(
-                    "en-US");
+                cell1.innerHTML = vintagespot.features[i].properties.Storename;
+                cell2.innerHTML = vintagespot.features[i].properties.Googlerate;
+                cell3.innerHTML = vintagespot.features[i].properties.Phone;
             }
 
 
             //load data to the map as new layers and table on the side.
             map.on('load', function loadingData() {
 
-                map.addSource('earthquakes', {
+                map.addSource('vintagespot', {
                     type: 'geojson',
-                    data: earthquakes
+                    data: vintagespot
                 });
 
                 map.addLayer({
-                    'id': 'earthquakes-layer',
+                    'id': 'vintagespot-layer',
                     'type': 'circle',
-                    'source': 'earthquakes',
+                    'source': 'vintagespot',
                     'paint': {
                         'circle-radius': 8,
                         'circle-stroke-width': 2,
@@ -130,15 +126,15 @@
                 });
 
 
-                map.addSource('japan', {
+                map.addSource('Seattle', {
                     type: 'geojson',
-                    data: japan
+                    data: Seattle
                 });
 
                 map.addLayer({
-                    'id': 'japan-layer',
+                    'id': 'Seattle-layer',
                     'type': 'fill',
-                    'source': 'japan',
+                    'source': 'Seattle',
                     'paint': {
                         'fill-color': '#0080ff', // blue color fill
                         'fill-opacity': 0.5
